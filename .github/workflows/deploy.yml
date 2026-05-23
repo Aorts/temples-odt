@@ -27,13 +27,12 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p _site
-          cp -r . _site/
+          # Copy everything except .git, .github, and _site itself
+          rsync -av --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
           # Use temple-trip.html as the landing page
           if [ -f _site/temple-trip.html ] && [ ! -f _site/index.html ]; then
             cp _site/temple-trip.html _site/index.html
           fi
-          # Clean up files we don't want to publish
-          rm -rf _site/.git _site/.github _site/_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
