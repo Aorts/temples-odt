@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ทริปสามวัด · กรุงเทพ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5efe2;
+    --cream-deep: #ebe2cf;
+    --ink: #1a1410;
+    --ink-soft: #4a3f33;
+    --gold: #b08840;
+    --gold-deep: #8a6628;
+    --vermilion: #a83a2a;
+    --jade: #4a6b5c;
+    --line: rgba(26, 20, 16, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Bai Jamjuree', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(176, 136, 64, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(168, 58, 42, 0.05) 0%, transparent 40%);
+  }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 60px;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold-deep);
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 .thai {
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-weight: 600;
+    font-size: 0.7em;
+    display: block;
+    margin-top: 8px;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-deep);
+    font-weight: 400;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meta-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 2px;
+  }
+
+  .meta-value {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* Decorative element */
+  .hero-decoration {
+    position: absolute;
+    top: 60px;
+    right: 32px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* TIMELINE */
+  .timeline-section {
+    padding: 40px 0 80px;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold-deep);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 40px;
+    margin-bottom: 48px;
+    letter-spacing: -0.01em;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    bottom: 12px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), var(--line), var(--gold));
+  }
+
+  .stop {
+    position: relative;
+    margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 28px 32px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    backdrop-filter: blur(8px);
+  }
+
+  .stop::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    top: 32px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--gold);
+    transition: all 0.3s ease;
+  }
+
+  .stop:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--gold);
+    transform: translateX(4px);
+  }
+
+  .stop:hover::before {
+    background: var(--gold);
+    box-shadow: 0 0 0 6px rgba(176, 136, 64, 0.15);
+  }
+
+  .stop.active {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+
+  .stop.active::before {
+    background: var(--vermilion);
+    border-color: var(--vermilion);
+    box-shadow: 0 0 0 6px rgba(168, 58, 42, 0.2);
+  }
+
+  .stop.active .stop-time,
+  .stop.active .stop-meta {
+    color: rgba(245, 239, 226, 0.7);
+  }
+
+  .stop.active .stop-name em {
+    color: var(--gold);
+  }
+
+  .stop-header {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .stop-time {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--gold-deep);
+    line-height: 1;
+    min-width: 90px;
+  }
+
+  .stop-name {
+    font-size: 22px;
+    font-weight: 600;
+    flex: 1;
+    line-height: 1.3;
+  }
+
+  .stop-name em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold-deep);
+    font-size: 0.85em;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .stop-type {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+  }
+
+  .stop-meta {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .stop-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .stop.active .stop-details {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(245, 239, 226, 0.15);
+  }
+
+  .stop-details p {
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .stop-tips {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: rgba(176, 136, 64, 0.08);
+    border-left: 2px solid var(--gold);
+    font-size: 14px;
+  }
+
+  .stop.active .stop-tips {
+    background: rgba(176, 136, 64, 0.12);
+  }
+
+  .stop-tips strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+  .stop-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 13px;
+    padding: 8px 16px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn:hover {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  /* CHECKLIST */
+  .checklist-section {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .check-item:hover {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--gold);
+  }
+
+  .check-item input {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--gold);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .check-item input:checked {
+    background: var(--gold);
+  }
+
+  .check-item input:checked::after {
+    content: '✓';
+    position: absolute;
+    color: var(--cream);
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .check-item input:checked ~ label {
+    text-decoration: line-through;
+    color: var(--ink-soft);
+    opacity: 0.6;
+  }
+
+  .check-item label {
+    font-size: 15px;
+    cursor: pointer;
+    flex: 1;
+  }
+
+  /* MAP */
+  .map-section {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .map-wrap {
+    margin-top: 32px;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 40px -20px rgba(26, 20, 16, 0.15);
+  }
+
+  .map-wrap iframe {
+    width: 100%;
+    height: 480px;
+    border: 0;
+    display: block;
+    filter: sepia(0.15) saturate(0.9);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0 60px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 16px;
+    border-top: 1px solid var(--line);
+    margin-top: 60px;
+  }
+
+  footer .ornament {
+    font-size: 24px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    letter-spacing: 8px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stop {
+    opacity: 0;
+    animation: fadeUp 0.6s forwards;
+  }
+
+  .stop:nth-child(1) { animation-delay: 0.4s; }
+  .stop:nth-child(2) { animation-delay: 0.5s; }
+  .stop:nth-child(3) { animation-delay: 0.6s; }
+  .stop:nth-child(4) { animation-delay: 0.7s; }
+  .stop:nth-child(5) { animation-delay: 0.8s; }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 20px; }
+    .hero { padding: 60px 0 40px; }
+    .hero-decoration { display: none; }
+    .timeline { padding-left: 28px; }
+    .stop { padding: 20px; }
+    .stop::before { left: -28px; }
+    .stop-header { gap: 12px; }
+    .stop-time { font-size: 22px; min-width: 70px; }
+    .stop-name { font-size: 18px; }
+    .section-title { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">— A pilgrimage in three acts</div>
+    <h1>
+      Three <em>Temples</em>,<br>One Day
+      <span class="thai">วัดสุทัศน์ · วัดอรุณ · วัดแขก</span>
+    </h1>
+
+    <svg class="hero-decoration" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="0.8" fill="#b08840" opacity="0.4"/>
+        </pattern>
+      </defs>
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#b08840" stroke-width="0.5" opacity="0.4"/>
+      <circle cx="100" cy="100" r="60" fill="none" stroke="#b08840" stroke-width="0.5" opacity="0.6"/>
+      <circle cx="100" cy="100" r="40" fill="url(#dots)"/>
+      <path d="M 100 30 L 100 170 M 30 100 L 170 100" stroke="#b08840" stroke-width="0.3" opacity="0.3"/>
+    </svg>
+
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Duration</span>
+        <span class="meta-value">~9 ชั่วโมง</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Start</span>
+        <span class="meta-value">08:30 น.</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Pace</span>
+        <span class="meta-value">เดินสบายๆ</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Budget</span>
+        <span class="meta-value">~800 บาท / คน</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <div class="section-label">— Itinerary</div>
+    <h2 class="section-title">ลำดับการเดินทาง</h2>
+
+    <div class="timeline">
+      <div class="stop" data-stop="1">
+        <div class="stop-header">
+          <div class="stop-time">08:30</div>
+          <div class="stop-name">
+            วัดสุทัศนเทพวราราม
+            <em>Wat Suthat Thepwararam</em>
+          </div>
+          <div class="stop-type">Temple</div>
+        </div>
+        <div class="stop-meta">
+          <span>⏱ ใช้เวลา ~1 ชม.</span>
+          <span>★ 4.8</span>
+          <span>ฟรี</span>
+        </div>
+        <div class="stop-details">
+          <p>เริ่มต้นวันที่วัดเก่าแก่ใจกลางพระนคร สร้างตั้งแต่สมัยรัชกาลที่ 1 ชมพระศรีศากยมุนีและจิตรกรรมฝาผนังที่เล่าเรื่องราวพุทธประวัติได้อย่างละเอียดงดงาม บรรยากาศเงียบสงบ ไม่พลุกพล่านเหมือนวัดท่องเที่ยวอื่นๆ</p>
+          <div class="stop-tips">
+            <strong>Tip</strong>
+            มาเช้าๆ แดดยังไม่แรง ฝั่งตรงข้ามคือเสาชิงช้าสีแดง แลนด์มาร์กถ่ายรูปสวย
+          </div>
+          <div class="stop-actions">
+            <a class="btn" href="https://maps.google.com/?cid=4143732516679963601" target="_blank">เปิดใน Google Maps →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop="2">
+        <div class="stop-header">
+          <div class="stop-time">10:00</div>
+          <div class="stop-name">
+            โกปี๊ เฮียไถ่
+            <em>Kope Hya Tai Kee · Breakfast</em>
+          </div>
+          <div class="stop-type">Café</div>
+        </div>
+        <div class="stop-meta">
+          <span>⏱ ~1 ชม.</span>
+          <span>★ 4.5</span>
+          <span>฿฿</span>
+        </div>
+        <div class="stop-details">
+          <p>ร้านกาแฟโบราณตำนานย่านเสาชิงช้า บรรยากาศย้อนยุค สั่งไข่กระทะกับกาแฟโบราณรสเข้มข้น เป็นมื้อเช้าที่ลงตัวก่อนเดินทางต่อ</p>
+          <div class="stop-tips">
+            <strong>Heads up</strong>
+            ช่วงสุดสัปดาห์อาจต้องรอคิว ถ้าไม่อยากรอ ลองมิตรโกหย่วน อยู่ใกล้ๆ กัน
+          </div>
+          <div class="stop-actions">
+            <a class="btn" href="https://maps.google.com/?cid=9767009674182294700" target="_blank">เปิดใน Google Maps →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop="3">
+        <div class="stop-header">
+          <div class="stop-time">11:30</div>
+          <div class="stop-name">
+            วัดอรุณราชวราราม
+            <em>Wat Arun · Temple of Dawn</em>
+          </div>
+          <div class="stop-type">Temple</div>
+        </div>
+        <div class="stop-meta">
+          <span>⏱ ~1.5 ชม.</span>
+          <span>★ 4.7</span>
+          <span>฿200</span>
+        </div>
+        <div class="stop-details">
+          <p>เดินจากเสาชิงช้าไปท่าเตียน ~15 นาที หรือนั่งแกร็บ ลงเรือข้ามฟาก 5 บาทถึงวัดอรุณเลย พระปรางค์ประดับเครื่องถ้วยเบญจรงค์งดงามเป็นเอกลักษณ์ ขึ้นไปได้บางชั้น วิวแม่น้ำเจ้าพระยาสวยมาก</p>
+          <div class="stop-tips">
+            <strong>Tip</strong>
+            เช่าชุดไทยถ่ายรูปได้รอบวัด ราคา ~200-500 บาท สวยมากในเฟรมพระปรางค์
+          </div>
+          <div class="stop-actions">
+            <a class="btn" href="https://maps.google.com/?cid=9727099538087655581" target="_blank">เปิดใน Google Maps →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop="4">
+        <div class="stop-header">
+          <div class="stop-time">13:30</div>
+          <div class="stop-name">
+            Kin & Koff
+            <em>Lunch · Riverside</em>
+          </div>
+          <div class="stop-type">Restaurant</div>
+        </div>
+        <div class="stop-meta">
+          <span>⏱ ~1.5 ชม.</span>
+          <span>★ 4.8</span>
+          <span>฿฿</span>
+        </div>
+        <div class="stop-details">
+          <p>ใกล้ท่าเตียน บรรยากาศดี อาหารไทยอร่อย เหมาะพักหลังเดินวัดอรุณ ทั้งข้าวมื้อหลักและเค้กของหวาน ราคาไม่แพง</p>
+          <div class="stop-tips">
+            <strong>Alternative</strong>
+            ViVi The Coffee Place — คาเฟ่ริมน้ำวิวตรงข้ามวัดอรุณ ถ้าอยากนั่งจิบกาแฟชิลๆ
+          </div>
+          <div class="stop-actions">
+            <a class="btn" href="https://maps.google.com/?cid=12259081914594952689" target="_blank">เปิดใน Google Maps →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop="5">
+        <div class="stop-header">
+          <div class="stop-time">15:30</div>
+          <div class="stop-name">
+            วัดพระศรีมหาอุมาเทวี
+            <em>Sri Maha Mariamman · Wat Khaek</em>
+          </div>
+          <div class="stop-type">Hindu Temple</div>
+        </div>
+        <div class="stop-meta">
+          <span>⏱ ~1.5 ชม.</span>
+          <span>★ 4.7</span>
+          <span>ฟรี + ค่าชุดสักการะ</span>
+        </div>
+        <div class="stop-details">
+          <p>นั่งแกร็บจากท่าเตียนไปสีลม ~20 นาที วัดฮินดูสไตล์อินเดียใต้ สถาปัตยกรรมหลากสีงดงาม ขอพรพระแม่อุมาเทวี พระพิฆเนศ และเทพอื่นๆ บรรยากาศศักดิ์สิทธิ์</p>
+          <div class="stop-tips">
+            <strong>ข้อควรรู้</strong>
+            ห้ามถ่ายรูปในวิหารหลัก ชุดสักการะ 60/100 บาท แต่งกายสุภาพคลุมไหล่-คลุมเข่า ถอดรองเท้าก่อนเข้า
+          </div>
+          <div class="stop-actions">
+            <a class="btn" href="https://maps.google.com/?cid=10956599447358866884" target="_blank">เปิดใน Google Maps →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="checklist-section">
+    <div class="section-label">— Essentials</div>
+    <h2 class="section-title">เช็คลิสต์ก่อนออก</h2>
+    <div class="checklist" id="checklist">
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">ผ้าคลุมไหล่ / เสื้อแขนยาว</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">กางเกง/กระโปรงยาวคลุมเข่า</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">เงินสด ~1,000 บาท</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">น้ำดื่ม + พัด/พัดลมพกพา</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">หมวก / ร่ม / ครีมกันแดด</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">รองเท้าใส่สบาย (ถอดง่าย)</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">มือถือชาร์จเต็ม + Power bank</label></div>
+      <div class="check-item"><input type="checkbox" id="c8"><label for="c8">แอป Grab พร้อมใช้</label></div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-section">
+    <div class="section-label">— Geography</div>
+    <h2 class="section-title">แผนที่เส้นทาง</h2>
+    <div class="map-wrap">
+      <iframe
+        src="https://maps.google.com/maps?q=13.7510446,100.5010927&z=13&output=embed"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <footer>
+    <div class="ornament">· · ·</div>
+    Safe travels & may the day be unhurried.
+  </footer>
+
+</div>
+
+<script>
+  // Toggle stops
+  document.querySelectorAll('.stop').forEach(stop => {
+    stop.addEventListener('click', () => {
+      const isActive = stop.classList.contains('active');
+      document.querySelectorAll('.stop').forEach(s => s.classList.remove('active'));
+      if (!isActive) stop.classList.add('active');
+    });
+  });
+
+  // Open first stop by default
+  document.querySelector('.stop[data-stop="1"]').classList.add('active');
+
+  // Checklist with localStorage
+  const checklist = document.getElementById('checklist');
+  const checkboxes = checklist.querySelectorAll('input[type="checkbox"]');
+
+  // Load saved state
+  checkboxes.forEach(cb => {
+    const saved = localStorage.getItem('temple-trip-' + cb.id);
+    if (saved === 'true') cb.checked = true;
+
+    cb.addEventListener('change', () => {
+      localStorage.setItem('temple-trip-' + cb.id, cb.checked);
+    });
+  });
+
+  // Prevent stop link clicks from toggling stop
+  document.querySelectorAll('.stop-actions a, .stop-actions button').forEach(el => {
+    el.addEventListener('click', e => e.stopPropagation());
+  });
+</script>
+
+</body>
+</html>
